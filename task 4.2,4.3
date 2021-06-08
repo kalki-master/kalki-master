@@ -1,0 +1,53 @@
+import cv2 as cv
+import numpy as np
+
+anand = cv.imread("anandkumar.jpg")[0:350][0:250]
+
+hrithik = cv.imread("hrithikroshan.jpg")[0:350][0:250]
+
+
+
+cv.imshow("Anand-kumar",anand)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+cv.imshow("Hrithik-roshan",hrithik)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+#face part of hrithik
+imgb = np.array(hrithik[20:120,20:120])
+
+cv.imshow("cropprd part",imgb)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+
+
+# face part of anand kumar
+
+imga=np.array(anand[20:120,20:120])
+cv.imshow("cropped part",imga)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+
+print(imga.shape ,imgb.shape)
+#images collage
+prev = np.hstack((anand,hrithik))
+print(prev.shape)
+cv.imshow("combo",prev)
+cv.waitKey(0)
+cv.destroyAllWindows()
+#swap 
+
+anand[20:120,20:120] = imgb
+hrithik[20:120,20:120] = imga
+
+#Stack Both Image
+after = np.hstack((anand,hrithik))
+
+# swapped
+cv.imshow("Swapped",after)
+cv.waitKey(0)
+cv.destroyAllWindows()
